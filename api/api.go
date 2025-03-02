@@ -32,7 +32,7 @@ type (
 		ProductListByIDStocks(id int) (*models.ProductIDStocks, error)
 		ProductListByIDPassports(id int) (*models.ProductIDPassport, error)
 		ProductListByIDPrices(id int) (*models.ProductIDPrices, error)
-		ProductListPricesfull() ([]*models.ProductPricesfull, error)
+		ProductListPricesfull() ([]*models.ProductIDPrices, error)
 		ProductListByIDCerts(id int) (*models.ProductIDCerts, error)
 		ProductListByIDSizes(id int) (*models.ProductIDSizes, error)
 		ProductListSKUParams(sku string) (*models.ProductSKUParams, error)

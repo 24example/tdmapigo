@@ -204,7 +204,7 @@ func (a *Api) ProductListByIDPrices(id int) (*models.ProductIDPrices, error) {
 
 }
 
-func (a *Api) ProductListPricesfull() ([]*models.ProductPricesfull, error) {
+func (a *Api) ProductListPricesfull() ([]*models.ProductIDPrices, error) {
 
 	const op = "API.ProductListPricesfull"
 
@@ -212,7 +212,7 @@ func (a *Api) ProductListPricesfull() ([]*models.ProductPricesfull, error) {
 		slog.String("event", op),
 	)
 
-	var products []*models.ProductPricesfull
+	var products []*models.ProductIDPrices
 
 	limit := 100
 	page := 1
@@ -220,7 +220,7 @@ func (a *Api) ProductListPricesfull() ([]*models.ProductPricesfull, error) {
 	for {
 		response, err := a.Client().
 			Request.
-			SetResult(&models.Response[[]*models.ProductPricesfull]{}).
+			SetResult(&models.Response[[]*models.ProductIDPrices]{}).
 			SetQueryParam("page", strconv.Itoa(page)).
 			SetQueryParam("per_page", strconv.Itoa(limit)).
 			Get("/product_list/pricesfull")
@@ -234,7 +234,7 @@ func (a *Api) ProductListPricesfull() ([]*models.ProductPricesfull, error) {
 			return nil, errors.New(response.Status())
 		}
 
-		result := response.Result().(*models.Response[[]*models.ProductPricesfull])
+		result := response.Result().(*models.Response[[]*models.ProductIDPrices])
 
 		products = append(products, result.Data...)
 
